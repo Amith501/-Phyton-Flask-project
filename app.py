@@ -1,6 +1,16 @@
 from flask import Flask, render_template
 
+from database.db import get_db, init_db, seed_db
+
 app = Flask(__name__)
+
+# ------------------------------------------------------------------ #
+# Database setup — run once on startup so tables and seed data       #
+# are ready before any route is used.                                #
+# ------------------------------------------------------------------ #
+with app.app_context():
+    init_db()
+    seed_db()
 
 
 # ------------------------------------------------------------------ #
